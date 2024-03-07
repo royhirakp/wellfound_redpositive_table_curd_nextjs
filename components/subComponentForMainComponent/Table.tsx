@@ -106,65 +106,66 @@ const TableRow = ({
   ] = useLazyDeleteItemByIdQuery();
 
   return (
-    <tr key={i}>
+    <>
       {isAddModalOpen && (
         <UpdatePopu item={item} closeAddPopup={closeAddModal} />
       )}
-
-      <td className="px-4 py-2">
-        <input
-          type="checkbox"
-          checked={selectedRows.includes(id)}
-          onChange={() => handleRowSelection(id)}
-        />
-      </td>
-      <td className="px-4 py-2">{i + 1}</td>
-      <td className="px-4 py-2">{item.name}</td>
-      <td className="px-4 py-2">{item.phone}</td>
-      <td className="px-4 py-2">{item.email}</td>
-      <td className="px-4 py-2">{item.hobbies}</td>
-      <td className="px-4 py-2 flex">
-        <button
-          onClick={openAddModal}
-          className="bg-yellow-500 text-white px-2 py-1 mr-2"
-        >
-          Update
-        </button>
-        <button
-          className="bg-red-500 text-white px-2 py-1 w-16 flex justify-center items-center"
-          onClick={async () => {
-            let deleteData = await deleteItemById({
-              id: item?._id,
-            });
-            refetch();
-          }}
-        >
-          {isLoadingForDelete ? (
-            <svg
-              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <circle
-                className="opacity-25"
-                cx="12"
-                cy="12"
-                r="10"
-                stroke="currentColor"
-                strokeWidth="4"
-              ></circle>
-              <path
-                className="opacity-75"
-                fill="currentColor"
-                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6-2.687-6-6z"
-              ></path>
-            </svg>
-          ) : (
-            "Delete"
-          )}
-        </button>
-      </td>
-    </tr>
+      <tr key={i}>
+        <td className="px-4 py-2">
+          <input
+            type="checkbox"
+            checked={selectedRows.includes(id)}
+            onChange={() => handleRowSelection(id)}
+          />
+        </td>
+        <td className="px-4 py-2">{i + 1}</td>
+        <td className="px-4 py-2">{item.name}</td>
+        <td className="px-4 py-2">{item.phone}</td>
+        <td className="px-4 py-2">{item.email}</td>
+        <td className="px-4 py-2">{item.hobbies}</td>
+        <td className="px-4 py-2 flex">
+          <button
+            onClick={openAddModal}
+            className="bg-yellow-500 text-white px-2 py-1 mr-2"
+          >
+            Update
+          </button>
+          <button
+            className="bg-red-500 text-white px-2 py-1 w-16 flex justify-center items-center"
+            onClick={async () => {
+              let deleteData = await deleteItemById({
+                id: item?._id,
+              });
+              refetch();
+            }}
+          >
+            {isLoadingForDelete ? (
+              <svg
+                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <circle
+                  className="opacity-25"
+                  cx="12"
+                  cy="12"
+                  r="10"
+                  stroke="currentColor"
+                  strokeWidth="4"
+                ></circle>
+                <path
+                  className="opacity-75"
+                  fill="currentColor"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 6.627 5.373 12 12 12v-4c-3.313 0-6-2.687-6-6z"
+                ></path>
+              </svg>
+            ) : (
+              "Delete"
+            )}
+          </button>
+        </td>
+      </tr>
+    </>
   );
 };

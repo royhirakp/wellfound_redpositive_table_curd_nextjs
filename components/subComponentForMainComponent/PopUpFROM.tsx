@@ -32,8 +32,6 @@ const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // api call
     const new_item = await createItem(data);
-    console.log(new_item);
-    console.log("derrrr====", (error as RequestError)?.data?.message);
     refetch();
   };
 

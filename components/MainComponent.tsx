@@ -63,7 +63,6 @@ const MainComponent = () => {
   };
 
   const handleRowSelection = (id: number) => {
-    console.log(id);
     if (selectedRows.includes(id)) {
       setSelectedRows(selectedRows.filter((rowId) => rowId !== id));
     } else {
@@ -84,13 +83,10 @@ const MainComponent = () => {
           isLoadingEmail={isLoadingEmail}
           isSuccessEmail={isSuccessEmail}
           onSendMail={async () => {
-            console.log(selectedRows);
             let ans = fetchData?.data?.filter((item: any, index: any) =>
               selectedRows.includes(index + 1)
             );
-            console.log(ans);
             const resForSendEmail = await email({ data: ans });
-            console.log("resForSendEmail==", resForSendEmail);
 
             setTimeout(() => {
               closSendMailModal();

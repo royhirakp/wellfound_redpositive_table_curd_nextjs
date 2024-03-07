@@ -99,7 +99,7 @@ const MainComponent = () => {
         />
       )}
       <div className="min-h-screen flex items-center justify-center">
-        <div className="max-w-6xl w-full p-8 border rounded-md shadow-md ">
+        <div className="max-w-5xl w-full p-8 border rounded-md shadow-md ">
           <div className="mb-4">
             <button
               onClick={openAddModal}

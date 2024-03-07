@@ -1,6 +1,7 @@
 "use client";
 import {
   useCreateNewItemMutation,
+  useUpdateItemMutation,
   useGetAllDataQuery,
 } from "@/redux/api/Item_api";
 import React from "react";
@@ -17,7 +18,14 @@ interface RequestError {
     message: string;
   };
 }
-const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
+const UpdatePopu = ({
+  closeAddPopup,
+  item,
+}: {
+  closeAddPopup: any;
+  item: any;
+}) => {
+  console.log(item, "=======item");
   const {
     register,
     handleSubmit,
@@ -25,16 +33,32 @@ const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
     setValue,
     getValues,
     formState: { errors },
-  } = useForm<Inputs>();
-  const [createItem, { isLoading, isError, isSuccess, error }] =
-    useCreateNewItemMutation();
+  } = useForm<Inputs>({
+    defaultValues: {
+      name: item.name,
+      email: item.email,
+      phone: item.phone,
+      hobbies: item.hobbies,
+    },
+  });
+  const [UpdateItem, { isLoading, isError, isSuccess, error }] =
+    useUpdateItemMutation();
+  //   const [UpdateItem] = useUpdateItemMutation();
   const { refetch } = useGetAllDataQuery({});
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // api call
-    const new_item = await createItem(data);
-    console.log(new_item);
-    console.log("derrrr====", (error as RequestError)?.data?.message);
+    // const new_item = await createItem(data);
+    // console.log(new_item);
+    // console.log("derrrr====", (error as RequestError)?.data?.message);
+
+    console.log(data);
+    const res = await UpdateItem({
+      id: item?._id,
+      body: data,
+    });
     refetch();
+
+    console.log("resresresres===", res);
   };
 
   return (
@@ -42,8 +66,9 @@ const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
       <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
         <div className="bg-white p-8 max-w-md mx-auto rounded-md shadow-md">
           <h1 className="text-2xl text-center pb-3 text-red-600">
-            Create new data Form
+            Update data Form
           </h1>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <Name errors={errors} register={register} />
             <Phone errors={errors} register={register} />
@@ -70,7 +95,7 @@ const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
   );
 };
 
-export default PopUpFROM;
+export default UpdatePopu;
 
 const FromControls = ({
   closeAddPopup,
@@ -117,7 +142,7 @@ const FromControls = ({
             ></path>
           </svg>
         ) : (
-          "Save"
+          "Update"
         )}
       </button>
     </div>

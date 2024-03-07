@@ -49,7 +49,7 @@ export const ItemApi_RTK_QUERY = createApi({
           };
         },
       }),
-      //POST ITEM
+      //UPDATE   ITEM
       updateItem: builder.mutation({
         query({ id, body }) {
           return {
@@ -69,7 +69,7 @@ export const ItemApi_RTK_QUERY = createApi({
           };
         },
       }),
-
+      //DELETE
       deleteItemById: builder.query({
         query({ id }) {
           return {
@@ -96,6 +96,7 @@ export const ItemApi_RTK_QUERY = createApi({
 export const {
   useLoginMutation,
   useCreateNewItemMutation,
+  useUpdateItemMutation,
   useGetAllDataQuery,
   useDeleteItemByIdQuery,
   useLazyDeleteItemByIdQuery,

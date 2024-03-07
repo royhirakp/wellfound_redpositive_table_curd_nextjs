@@ -73,19 +73,6 @@ const Table = ({
 
 export default Table;
 
-{
-  /* <TableRow
-key={i}
-id={id}
-handleRowSelection={handleRowSelection}
-item={item}
-i={i}
-selectedRows={selectedRows}
-deleteItemById={deleteItemById}
-isLoadingForDelete={true}
-refetch={refetch}
-/> */
-}
 const TableRow = ({
   id,
   handleRowSelection,

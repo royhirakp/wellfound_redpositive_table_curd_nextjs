@@ -47,18 +47,15 @@ const UpdatePopu = ({
   const { refetch } = useGetAllDataQuery({});
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     // api call
-    // const new_item = await createItem(data);
-    // console.log(new_item);
-    // console.log("derrrr====", (error as RequestError)?.data?.message);
 
-    console.log(data);
+    // console.log(data);
     const res = await UpdateItem({
       id: item?._id,
       body: data,
     });
     refetch();
 
-    console.log("resresresres===", res);
+    // console.log("resresresres===", res);
   };
 
   return (

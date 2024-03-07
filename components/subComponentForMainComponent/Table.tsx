@@ -23,11 +23,6 @@ const Table = ({
 }) => {
   //delete
 
-  const [
-    deleteItemById,
-    { isLoading: isLoadingForDelete, isError: isErrorForDelete, error },
-  ] = useLazyDeleteItemByIdQuery();
-
   //api call
   // console.log(fetchData?.data);
 
@@ -66,8 +61,6 @@ const Table = ({
                 item={item}
                 i={i}
                 selectedRows={selectedRows}
-                deleteItemById={deleteItemById}
-                isLoadingForDelete={isLoadingForDelete}
                 refetch={refetch}
               />
             );
@@ -99,8 +92,6 @@ const TableRow = ({
   item,
   i,
   selectedRows,
-  deleteItemById,
-  isLoadingForDelete,
   refetch,
 }: {
   id: any;
@@ -108,8 +99,7 @@ const TableRow = ({
   item: any;
   i: any;
   selectedRows: any;
-  deleteItemById: any;
-  isLoadingForDelete: any;
+
   refetch: any;
 }) => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -121,6 +111,12 @@ const TableRow = ({
   const closeAddModal = () => {
     setAddModalOpen(false);
   };
+
+  //api
+  const [
+    deleteItemById,
+    { isLoading: isLoadingForDelete, isError: isErrorForDelete, error },
+  ] = useLazyDeleteItemByIdQuery();
 
   return (
     <tr key={i}>

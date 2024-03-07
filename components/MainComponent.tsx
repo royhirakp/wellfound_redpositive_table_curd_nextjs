@@ -115,15 +115,21 @@ const MainComponent = () => {
             </button>
           </div>
           <div className="border-2 overflow-auto">
-            <Table
-              //  data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-              handleSelectAll={handleSelectAll}
-              selectAll={selectAll}
-              selectedRows={selectedRows}
-              handleRowSelection={handleRowSelection}
-              fetchData={fetchData}
-              refetch={refetch}
-            />
+            {isLoading ? (
+              <LoadingShowww />
+            ) : (
+              <>
+                <Table
+                  //  data={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+                  handleSelectAll={handleSelectAll}
+                  selectAll={selectAll}
+                  selectedRows={selectedRows}
+                  handleRowSelection={handleRowSelection}
+                  fetchData={fetchData}
+                  refetch={refetch}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -132,3 +138,37 @@ const MainComponent = () => {
 };
 
 export default MainComponent;
+
+const LoadingShowww = () => {
+  return (
+    <>
+      <div className="flex gap-3 my-5 justify-center items-center flex-col">
+        Table is loading..........
+        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 100 100"
+            preserveAspectRatio="xMidYMid"
+          >
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="#4e4e4e"
+              stroke-width="10"
+            >
+              <animate
+                attributeName="stroke-dasharray"
+                repeatCount="indefinite"
+                dur="1s"
+                keyTimes="0;1"
+                values="0 300;300 0"
+              />
+            </circle>
+          </svg>
+        </div>
+      </div>
+    </>
+  );
+};

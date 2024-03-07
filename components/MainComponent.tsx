@@ -48,7 +48,7 @@ const MainComponent = () => {
 
   //select and select all
 
-  const [selectAll, setSelectAll] = useState(true);
+  const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState<number[]>([]);
   //
 
@@ -83,6 +83,11 @@ const MainComponent = () => {
           isLoadingEmail={isLoadingEmail}
           isSuccessEmail={isSuccessEmail}
           onSendMail={async () => {
+            console.log(selectedRows);
+            if (selectedRows.length === 0) {
+              alert("please select items");
+              return;
+            }
             let ans = fetchData?.data?.filter((item: any, index: any) =>
               selectedRows.includes(index + 1)
             );
@@ -152,7 +157,7 @@ const LoadingShowww = () => {
               r="45"
               fill="none"
               stroke="#4e4e4e"
-              stroke-width="10"
+              strokeWidth="10"
             >
               <animate
                 attributeName="stroke-dasharray"

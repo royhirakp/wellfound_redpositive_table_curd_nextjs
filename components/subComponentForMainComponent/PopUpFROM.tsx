@@ -33,6 +33,9 @@ const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
     // api call
     const new_item = await createItem(data);
     refetch();
+    setTimeout(() => {
+      closeAddPopup();
+    }, 5000);
   };
 
   return (
@@ -56,7 +59,7 @@ const PopUpFROM = ({ closeAddPopup }: { closeAddPopup: any }) => {
             {/* Display error message */}
             {isError && (
               <p className="text-red-500 text-sm mt-2 max-w-64">
-                Error creating item. Please try again.
+                Error!!!!! creating item. Please try again.
                 <br />
                 {(error as RequestError)?.data?.message}
               </p>

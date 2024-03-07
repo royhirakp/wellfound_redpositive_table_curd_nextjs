@@ -55,6 +55,10 @@ const UpdatePopu = ({
     });
     refetch();
 
+    setTimeout(() => {
+      closeAddPopup();
+    }, 5000);
+
     // console.log("resresresres===", res);
   };
 
@@ -74,13 +78,13 @@ const UpdatePopu = ({
             <FromControls closeAddPopup={closeAddPopup} isLoading={isLoading} />
             {isSuccess && (
               <p className="text-green-500 text-sm mt-2 text-center">
-                Item created successfully!
+                Item updated successfully!
               </p>
             )}
             {/* Display error message */}
             {isError && (
               <p className="text-red-500 text-sm mt-2 max-w-64">
-                Error creating item. Please try again.
+                Error updating item. Please try again.
                 <br />
                 {(error as RequestError)?.data?.message}
               </p>

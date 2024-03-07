@@ -5,6 +5,12 @@ interface SendTableSelectDataPopupProps {
   isErrorEmail: any;
   isLoadingEmail: any;
   isSuccessEmail: any;
+  error: any;
+}
+interface RequestError {
+  data: {
+    message: string;
+  };
 }
 const SendTableSelectDataPopupEmail: React.FC<
   SendTableSelectDataPopupProps
@@ -14,6 +20,7 @@ const SendTableSelectDataPopupEmail: React.FC<
   isErrorEmail,
   isLoadingEmail,
   isSuccessEmail,
+  error,
 }) => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
@@ -34,8 +41,19 @@ const SendTableSelectDataPopupEmail: React.FC<
           </button>
         </div>
         <div>
-          {isErrorEmail && "Error! please try agin later "}
-          {isSuccessEmail && "Email send ! successfully"}
+          {isSuccessEmail && (
+            <p className="text-green-500 text-sm mt-2 text-center">
+              Email send ! successfully
+            </p>
+          )}
+          {/* Display error message */}
+          {isErrorEmail && (
+            <p className="text-red-500 text-sm mt-2 max-w-64">
+              Error! please try agin later
+              <br />
+              {(error as RequestError)?.data?.message}
+            </p>
+          )}
         </div>
       </div>
     </div>

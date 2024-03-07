@@ -42,6 +42,7 @@ const MainComponent = () => {
       isError: isErrorEmail,
       isLoading: isLoadingEmail,
       isSuccess: isSuccessEmail,
+      error,
     },
   ] = useSendMAilMutation();
 
@@ -77,6 +78,7 @@ const MainComponent = () => {
       {isAddModalOpen && <PopUpFROM closeAddPopup={closeAddModal} />}
       {isSendMailOpen && (
         <SendTableSelectDataPopupEmail
+          error={error}
           onCancel={closSendMailModal}
           isErrorEmail={isErrorEmail}
           isLoadingEmail={isLoadingEmail}
@@ -89,6 +91,10 @@ const MainComponent = () => {
             console.log(ans);
             const resForSendEmail = await email({ data: ans });
             console.log("resForSendEmail==", resForSendEmail);
+
+            setTimeout(() => {
+              closSendMailModal();
+            }, 4000);
           }}
         />
       )}

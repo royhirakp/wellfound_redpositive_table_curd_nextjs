@@ -13,7 +13,9 @@ interface CustomError {
 export const ItemApi_RTK_QUERY = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api/v1",
+    baseUrl:
+      // "http://localhost:4000/api/v1",
+      "https://wellfound-redpositive-table-curd.onrender.com/api/v1",
     prepareHeaders(headers) {
       const token = localStorage.getItem("token");
       if (token) {
